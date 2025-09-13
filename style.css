@@ -1,0 +1,338 @@
+/* ----------------------------
+   YMart — Presentation Store
+   Replace images/... with your own pictures.
+   Slide backgrounds are controlled below.
+   ---------------------------- */
+
+/* Reset + base */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #222;
+  background: #f5f7fb;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Top tabs */
+.topbar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, 96%);
+  z-index: 999;
+  pointer-events: auto;
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+  padding: 6px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(10,10,20,0.08);
+  position: relative;
+}
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  position: relative;
+  transition: transform .25s ease, color .25s ease;
+}
+.tab-btn:hover { transform: translateY(-3px); color: #0b6623; }
+.tab-btn.active { color: #0b6623; }
+
+/* moving indicator under active tab */
+.tab-indicator {
+  position: absolute;
+  height: 6px;
+  background: linear-gradient(90deg,#ff7a18,#ff3b76);
+  border-radius: 6px;
+  bottom: 4px;
+  left: 8px;
+  width: 60px;
+  transform-origin: left center;
+  transition: left .28s cubic-bezier(.2,.9,.2,1), width .28s cubic-bezier(.2,.9,.2,1);
+  box-shadow: 0 6px 18px rgba(255,60,120,0.14);
+  pointer-events: none;
+}
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  background: #ff3b76;
+  color: white;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 999px;
+}
+
+/* Slides container */
+.slides {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Each slide occupies full viewport and stacks absolute */
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 120px 28px 60px 28px; /* top space for tabs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .45s ease;
+  opacity: 0;
+  transform: translateY(30px) scale(.995);
+  pointer-events: none;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* Per-slide background placeholders (change URLs) */
+.slide-home {
+  background: linear-gradient(120deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15)),
+              url('https://img.freepik.com/premium-photo/shopping-cart-trolley-full-fresh-groceries-yellow-background-space-text_705052-2717.jpg') center/cover no-repeat;
+  color: white;
+}
+
+.slide-products {
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
+              url('images/products-bg.jpg') center/cover no-repeat;
+  color: #111;
+}
+
+.slide-cart { background: linear-gradient(180deg,#f8fbff,#eef6f9); color:#111; }
+.slide-wishlist { background: linear-gradient(180deg,#fff8f0,#fffdfb); color:#111; }
+.slide-track { background: linear-gradient(180deg,#f9fbf7,#f3f6fb); color:#111; }
+
+/* Slide inner layout */
+.slide-inner {
+  width: min(1200px, 96%);
+  margin: 0 auto;
+}
+
+/* Home (hero) layout */
+.slide-home .slide-inner {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 40px;
+  align-items: center;
+}
+.brand {
+  font-size: 48px;
+  letter-spacing: -1px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+.lead { font-size: 20px; opacity: .95; margin-bottom: 8px; }
+.lead-sub { font-size: 14px; opacity: .9; margin-bottom: 18px; }
+
+/* Hero image placeholder (replace images/hero.jpg) */
+.title-image {
+  width: 100%;
+  height: 420px;
+  border-radius: 18px;
+  background: linear-gradient(180deg,#fff,#f3f6fb);
+  box-shadow: 0 18px 40px rgba(10,20,30,0.18);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn.primary {
+  background: linear-gradient(90deg,#00c853,#00bfa5);
+  color: white;
+  box-shadow: 0 8px 22px rgba(0,200,150,0.14);
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+}
+
+/* Products slide header + wishlist preview */
+.products-header {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.products-header h2 { margin: 0; font-size: 28px; }
+.wishlist-preview {
+  width: 420px;
+  background: linear-gradient(90deg,#fff,#fcfcff);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(25,25,40,0.06);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.wish-items {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px;
+}
+.wish-preview-item {
+  min-width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+.wish-empty { color: #999; padding: 8px; font-size: 13px; }
+
+/* Products grid */
+.products-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* Product card */
+.product-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 8px 22px rgba(10, 20, 30, 0.06);
+}
+.product-card:hover { transform: translateY(-6px); }
+.card-media { position: relative; height: 140px; overflow: hidden; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; display:block; }
+.wish-toggle {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  padding: 7px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform .18s ease, background .18s;
+}
+.wish-toggle.active { color: #ff3b76; transform: scale(1.08); background: white; box-shadow: 0 8px 18px rgba(255,60,120,0.08); }
+
+.card-body { padding: 12px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.card-body h3 { margin:0; font-size:16px; }
+.card-body .desc { font-size:13px; color:#555; margin: 0; }
+.card-meta { display:flex; gap:8px; align-items:baseline; margin-top:6px; }
+.price { color:#00a152; font-size:16px; }
+
+.card-controls { display:flex; gap:8px; align-items:center; margin-top:auto; }
+.qty-input {
+  width:72px;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #e6e9ee;
+  text-align:center;
+}
+
+/* Cart slide layout */
+.cart-area {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items:start;
+  margin-top: 18px;
+}
+.cart-list { list-style:none; padding: 0; margin: 0; display:flex; flex-direction:column; gap:12px; }
+.cart-row {
+  background:white;
+  border-radius:10px;
+  padding:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  box-shadow: 0 8px 20px rgba(10,20,30,0.05);
+}
+.cart-row img { width:72px; height:72px; object-fit:cover; border-radius:8px; }
+.cart-row .info { flex: 1; }
+.cart-row .controls { display:flex; gap:8px; align-items:center; }
+
+/* Cart summary */
+.cart-summary {
+  background: linear-gradient(180deg,#fff,#fcfffd);
+  padding:18px;
+  border-radius:12px;
+  box-shadow: 0 12px 30px rgba(10,20,30,0.06);
+}
+.summary-row { display:flex; justify-content:space-between; padding:6px 0; }
+.summary-actions { margin-top:14px; display:flex; gap:8px; }
+
+/* Wishlist slide */
+.wishlist-list { list-style:none; display:flex; gap:12px; flex-wrap:wrap; padding:0; margin: 14px 0 0 0; }
+.wish-item {
+  width:160px;
+  background:white;
+  border-radius:10px;
+  padding:10px;
+  box-shadow: 0 8px 20px rgba(10,20,30,0.05);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* Track slide */
+.track-box { display:flex; gap:8px; align-items:center; justify-content:center; margin-top:16px; }
+.track-box input {
+  width:320px; padding:10px; border-radius:8px; border:1px solid #e6e9ee;
+}
+.track-status { margin-top:12px; color:#333; font-weight:600; }
+
+/* Modal */
+.modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.35); z-index:10000; }
+.modal.hidden { display:none; }
+.modal-panel { background:white; padding:20px 22px; border-radius:12px; max-width:440px; width:92%; text-align:center; box-shadow:0 24px 60px rgba(10,20,30,0.2); }
+.modal-actions { margin-top:12px; display:flex; justify-content:center; gap:8px; }
+
+/* Footer */
+.site-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align:center;
+  padding:8px;
+  font-size:13px;
+  color:#fff;
+  background: linear-gradient(90deg,#1e2328,#2b2f36);
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+  .slide-home .slide-inner { grid-template-columns: 1fr; }
+  .products-header { flex-direction: column; align-items: stretch; gap: 12px; }
+  .wishlist-preview { width: 100%; }
+  .cart-area { grid-template-columns: 1fr; }
+  .topbar { top: 8px; padding: 0 6px; }
+}

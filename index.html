@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YMart — Presentation Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top tabs (no arrows) -->
+  <header class="topbar">
+    <nav class="tabs" role="navigation" aria-label="Main Navigation">
+      <button class="tab-btn active" data-slide="1">Home</button>
+      <button class="tab-btn" data-slide="2">Products</button>
+      <button class="tab-btn" data-slide="3">Cart <span class="badge" id="badge-cart">0</span></button>
+      <button class="tab-btn" data-slide="4">Wishlist <span class="badge" id="badge-wish">0</span></button>
+      <button class="tab-btn" data-slide="5">Track</button>
+      <div class="tab-indicator" aria-hidden="true"></div>
+    </nav>
+  </header>
+
+  <!-- Slide container (presentation-like full screen slides) -->
+  <main id="slides" class="slides">
+    <!-- Slide 1: Home / Hero -->
+    <section class="slide slide-home active" data-index="1" id="slide-1">
+      <div class="slide-inner">
+        <div class="hero-left">
+          <h1 class="brand">YMart</h1>
+          <h2 class="lead">Fresh groceries delivered to your doorstep</h2>
+          
+          <div class="hero-actions">
+            <button class="btn primary" data-goto="2">Shop Now</button>
+            <button class="btn ghost" data-goto="2">View Products</button>
+          </div>
+        </div>
+
+        <!-- Title image placeholder: replace images/hero.jpg -->
+        <div class="hero-right">
+
+</div>
+
+      </div>
+    </section>
+
+    <!-- Slide 2: Products (contains wishlist preview at top) -->
+    <section class="slide slide-products" data-index="2" id="slide-2">
+      <div class="slide-inner">
+        <header class="products-header">
+          <h2>All Products</h2>
+
+          <!-- Wishlist preview placed at top of Products slide (user asked for wishlist on top) -->
+          <div class="wishlist-preview" id="wishlist-preview">
+            <strong>Your Wishlist</strong>
+            <div class="wish-items" id="wish-preview-items">
+              <!-- JS will fill this horizontally scrollable preview. -->
+              <div class="wish-empty">No items yet — click ❤️ on a product</div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Products grid (all products in ONE slide) -->
+        <section class="products-grid" id="products-grid">
+          <!-- Each product card: replace the <img src="..."> with your image path inside images/ -->
+          <!-- Product data stored with data-name and data-price; JS uses these. -->
+
+          <!-- Fruits -->
+          <article class="product-card" data-name="Apples" data-price="100">
+            <figure class="card-media">
+              <img src="https://tse1.explicit.bing.net/th/id/OIP.JoiX45QQx6NYUIbdmPHEBgHaFQ?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Apples — replace images/apple.jpg" />
+              <button class="wish-toggle" aria-label="Add Apples to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Apples</h3>
+              <p class="desc">Fresh and juicy red apples</p>
+              <div class="card-meta">
+                <strong class="price">₹100</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for Apples" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Bananas" data-price="40">
+            <figure class="card-media">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.0F95AqnpMOCeVOWgNQ3qDgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bananas — replace images/banana.jpg" />
+              <button class="wish-toggle" aria-label="Add Bananas to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Bananas</h3>
+              <p class="desc">Sweet and energy-boosting bananas</p>
+              <div class="card-meta">
+                <strong class="price">₹40</strong><small>/ Dozen</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Oranges" data-price="90">
+            <figure class="card-media">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.9_LbMfZI0v6_fAQWYuqwGAHaFS?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Oranges — replace images/orange.jpg" />
+              <button class="wish-toggle" aria-label="Add Oranges to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Oranges</h3>
+              <p class="desc">Vitamin-C rich juicy oranges</p>
+              <div class="card-meta">
+                <strong class="price">₹90</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vegetables -->
+          <article class="product-card" data-name="Tomatoes" data-price="60">
+            <figure class="card-media">
+              <img src="https://th.bing.com/th/id/R.f30e41a3f65b0cf5b85aff41e976f6de?rik=LgL42NpRkNBv7Q&pid=ImgRaw&r=0" alt="Tomatoes — replace images/tomato.jpg" />
+              <button class="wish-toggle" aria-label="Add Tomatoes to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Tomatoes</h3>
+              <p class="desc">Farm fresh tomatoes</p>
+              <div class="card-meta">
+                <strong class="price">₹60</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Potatoes" data-price="40">
+            <figure class="card-media">
+              <img src="https://i5.walmartimages.ca/images/Large/101/091/775058101091.jpg" alt="Potatoes — replace images/potato.jpg" />
+              <button class="wish-toggle" aria-label="Add Potatoes to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Potatoes</h3>
+              <p class="desc">Golden potatoes, ideal for curries</p>
+              <div class="card-meta">
+                <strong class="price">₹40</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Onions" data-price="50">
+            <figure class="card-media">
+              <img src="https://th.bing.com/th/id/R.3f84ab34ae59a5acc818c65362757cff?rik=ZletuzRjnuhhKA&pid=ImgRaw&r=0" alt="Onions — replace images/onion.jpg" />
+              <button class="wish-toggle" aria-label="Add Onions to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Onions</h3>
+              <p class="desc">Essential everyday onions</p>
+              <div class="card-meta">
+                <strong class="price">₹50</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dairy -->
+          <article class="product-card" data-name="Milk" data-price="50">
+            <figure class="card-media">
+              <img src="https://img.freepik.com/premium-photo/isolated-white-milk-jug-glass_984672-1019.jpg" alt="Milk — replace images/milk.jpg" />
+              <button class="wish-toggle" aria-label="Add Milk to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Milk</h3>
+              <p class="desc">Pure and fresh milk</p>
+              <div class="card-meta">
+                <strong class="price">₹50</strong><small>/ L</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Cheese" data-price="120">
+            <figure class="card-media">
+              <img src="https://as1.ftcdn.net/v2/jpg/00/72/38/12/1000_F_72381285_ZZk3J4uAD7QO8H2gSRNIvBdOuiWljDE9.jpg" alt="Cheese — replace images/cheese.jpg" />
+              <button class="wish-toggle" aria-label="Add Cheese to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Cheese</h3>
+              <p class="desc">Soft cheese — great for sandwiches</p>
+              <div class="card-meta">
+                <strong class="price">₹120</strong><small>/ 200g</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Staples -->
+          <article class="product-card" data-name="Rice" data-price="80">
+            <figure class="card-media">
+              <img src="https://static.vecteezy.com/system/resources/previews/037/349/469/non_2x/ai-generated-a-handful-of-long-grain-white-rice-spills-out-on-the-wooden-table-food-light-natural-colors-high-quality-ai-generative-photo.jpg" alt="Rice — replace images/rice.jpg" />
+              <button class="wish-toggle" aria-label="Add Rice to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Rice</h3>
+              <p class="desc">Premium quality rice</p>
+              <div class="card-meta">
+                <strong class="price">₹80</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Wheat" data-price="45">
+            <figure class="card-media">
+              <img src="https://tse3.mm.bing.net/th/id/OIP.AEy2wbEz4HpwFRL6lsBFAgHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Wheat — replace images/wheat.jpg" />
+              <button class="wish-toggle" aria-label="Add Wheat to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Wheat</h3>
+              <p class="desc">High-fiber wheat flour</p>
+              <div class="card-meta">
+                <strong class="price">₹45</strong><small>/ Kg</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Snacks -->
+          <article class="product-card" data-name="Biscuits" data-price="30">
+            <figure class="card-media">
+              <img src="https://m.media-amazon.com/images/I/91g2vwIQMiL._SL1500_.jpg" alt="Biscuits — replace images/biscuits.jpg" />
+              <button class="wish-toggle" aria-label="Add Biscuits to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Biscuits</h3>
+              <p class="desc">Crispy tasty biscuits</p>
+              <div class="card-meta">
+                <strong class="price">₹30</strong><small>/ Pack</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" data-name="Chips" data-price="20">
+            <figure class="card-media">
+              <img src="https://tse4.mm.bing.net/th/id/OIP.EjkB6LXmuATz5ORUd74xZAHaFj?w=750&h=563&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Chips — replace images/chips.jpg" />
+              <button class="wish-toggle" aria-label="Add Chips to wishlist">♡</button>
+            </figure>
+            <div class="card-body">
+              <h3>Chips</h3>
+              <p class="desc">Crunchy potato chips</p>
+              <div class="card-meta">
+                <strong class="price">₹20</strong><small>/ Pack</small>
+              </div>
+              <div class="card-controls">
+                <input class="qty-input" type="number" min="1" value="1" />
+                <button class="btn add-cart">Add</button>
+              </div>
+            </div>
+          </article>
+
+        </section>
+      </div>
+    </section>
+
+    <!-- Slide 3: Cart (with update/remove quantity) -->
+    <section class="slide slide-cart" data-index="3" id="slide-3">
+      <div class="slide-inner">
+        <h2>Your Cart</h2>
+        <div class="cart-area">
+          <ul class="cart-list" id="cart-items">
+            <!-- JS populates cart rows with quantity controls & remove -->
+            <li class="cart-empty">Your cart is empty</li>
+          </ul>
+
+          <aside class="cart-summary">
+            <div class="summary-row">
+              <span>Items:</span><span id="cart-items-count">0</span>
+            </div>
+            <div class="summary-row">
+              <span>Total:</span><strong id="cart-total">₹0</strong>
+            </div>
+            <div class="summary-actions">
+              <button class="btn ghost" id="btn-clear">Clear</button>
+              <button class="btn primary" id="btn-checkout">Checkout</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Full Wishlist -->
+    <section class="slide slide-wishlist" data-index="4" id="slide-4">
+      <div class="slide-inner">
+        <h2>Your Wishlist</h2>
+        <ul id="wishlist-items" class="wishlist-list">
+          <li class="wish-empty">No wishlist items yet — add some from Products</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 5: Track Order -->
+    <section class="slide slide-track" data-index="5" id="slide-5">
+      <div class="slide-inner">
+        <h2>Track Your Order</h2>
+        <div class="track-box">
+          <input id="trackId" type="text" placeholder="Order ID (e.g. ORD12345)" />
+          <button class="btn primary" id="btn-track">Track</button>
+          <p id="track-status" class="track-status"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Simple modal / toast for checkout success -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-panel">
+      <h3 id="modal-title">Order Placed</h3>
+      <p id="modal-msg">Thanks! Your order is placed successfully.</p>
+      <div class="modal-actions">
+        <button class="btn primary" id="modal-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> YMart — Creative presentation store</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
